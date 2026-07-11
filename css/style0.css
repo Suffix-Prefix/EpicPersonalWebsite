@@ -1,0 +1,357 @@
+/* --- Reset & Base Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #333333;
+    line-height: 1.6;
+    background-color: #ffffff;
+}
+
+/* --- Navigation Core Bar Structure --- */
+.header-nav {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; 
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 70%, rgba(0, 0, 0, 0) 100%);
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+    z-index: 99999; /* Base navigation layer track */
+}
+
+/* --- Centered Text Logo Style --- */
+.nav-logo-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Shifts baseline back left by exactly half its width to perfectly center it */
+    
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style: italic;
+    letter-spacing: -1px;
+    text-decoration: none; /* Removes default link underline */
+    
+    /* Crisp styling matching your main page header aesthetic */
+    -webkit-text-stroke: 1px #000000;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    
+    /* MANDATORY CHANGED: Enables click interaction and standard cursor fingers */
+    pointer-events: auto; 
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Subtle visual feedback when hovering over the centered logo link */
+.nav-logo-text:hover {
+    opacity: 0.85;
+    transform: translateX(-50%) scale(1.02); /* Keeps it mathematically centered while magnifying slightly */
+}
+
+
+.nav-back-link:hover {
+    opacity: 0.8;
+}
+
+/* Directory for the back arrow icon */
+.nav-arrow {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+}
+
+.nav-back-link:hover {
+    transform: scale(1.1); /* Subtle response when interactive */
+}
+
+.nav-back-link img {
+    height: 28px; /* Keeps your arrow icon proportioned perfectly */
+    width: auto;
+}
+
+/* --- Menu Functional Core --- */
+.menu-checkbox {
+    display: none; 
+}
+
+/* Three-bar Hamburger Trigger Button */
+.menu-button {
+    position: absolute;
+    right: 40px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 18px;
+    cursor: pointer;
+    z-index: 100001;
+}
+
+.hamburger-bar {
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* --- Dark Topographic Menu Panel Fix --- */
+.dropdown-menu-panel {
+    position: fixed;
+    top: 0; /* Changed to 0 so it aligns cleanly from the absolute top of the screen */
+    right: -340px; 
+    width: 340px;
+    height: 100vh; /* Takes full window height */
+    padding: 90px 24px 30px 24px; /* Generous top padding so content starts below the navigation elements */
+    box-sizing: border-box;
+    overflow-y: auto;
+    transition: right 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 100000;
+    
+    /* Dark translucent styling overlaying the topographic asset */
+    background-image: linear-gradient(rgba(20, 20, 20, 0.85), rgba(20, 20, 20, 0.85)), url('../img/topographic.png');
+    background-repeat: repeat;
+    background-size: 300px;
+    backdrop-filter: blur(10px); /* Premium blur effect against background content */
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: -8px 0 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Action Trigger */
+.menu-checkbox:checked ~ .dropdown-menu-panel {
+    right: 0;
+}
+
+/* Close Button Transformation */
+.menu-checkbox:checked ~ .menu-button .hamburger-bar:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+.menu-checkbox:checked ~ .menu-button .hamburger-bar:nth-child(2) {
+    opacity: 0;
+}
+.menu-checkbox:checked ~ .menu-button .hamburger-bar:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* --- Dark Mode Menu Typography & Item Lines --- */
+.menu-header-logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    text-align: center;
+    color: #ffffff; /* Crisp white logo text */
+    margin-bottom: 25px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* Muted border track */
+    padding-bottom: 15px;
+    letter-spacing: -1px;
+}
+
+.menu-links-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 14px 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Semi-transparent separation lines */
+    transition: background-color 0.2s ease, padding-left 0.2s ease;
+}
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    padding-left: 12px; /* Smooth interactive nudge animation */
+}
+
+.menu-item img {
+    width: 80px; 
+    height: auto;
+    margin-right: 18px;
+    object-fit: contain;
+    filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.3)); /* Helps transparent car cutouts pop */
+}
+
+.menu-item span {
+    color: #ffffff; /* Bright legible link items */
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.header-banner-img {
+    width: 100%;
+    height: auto;       /* Allows the height to scale perfectly with your screen width */
+    display: block;     /* Removes extra whitespace underneath the image */
+    object-fit: normal; /* Disables the zoom/cropping effect */
+}
+
+
+
+
+/* --- Content Wrapper & Background Pattern --- */
+.content-wrapper {
+    width: 100%;
+    padding: 40px 0;
+    /* Directory placeholder for the wavy background pattern */
+    background: url('images/bg-pattern.png') repeat;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent to read text easily over pattern */
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+/* --- Typography & Elements --- */
+h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #111111;
+    border-left: 5px solid #d00f0f; /* Sporty red accent line */
+    padding-left: 10px;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 25px 0 10px;
+    color: #222222;
+}
+
+p {
+    margin-bottom: 15px;
+    text-align: justify;
+    font-size: 15px;
+}
+
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 30px 0;
+}
+
+/* --- Layout Sections --- */
+.intro-section {
+    width: 100%;
+}
+
+.intro-text {
+    margin-right: 320px; /* Leave space for the floating sidebar */
+}
+
+/* Clearfix for floating layouts */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* --- Sidebar Infobox Styling --- */
+.info-box {
+    float: right;
+    width: 290px;
+    background-color: #292929;
+    color: #000000;
+    border: 1px solid #000000;
+    padding: 15px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+/* Forces the main heading inside the box to be bright white */
+.info-box h3 {
+    color: #ffffff !important;
+}
+
+/* Forces the labels (left side) to be a clean light gray */
+.info-box th {
+    color: #e0e0e0 !important;
+    font-weight: 600;
+}
+
+/* Forces the specifications (right side) to be bright white */
+.info-box td {
+    color: #ffffff !important;
+}
+
+.info-img {
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 2px;
+}
+
+.info-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.info-box th, .info-box td {
+    padding: 6px 4px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.info-box th {
+    font-weight: 600;
+    color: #aaaaaa;
+    width: 40%;
+}
+
+/* --- Gallery Grids --- */
+.gallery {
+    display: grid;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+    .intro-text {
+        margin-right: 0;
+    }
+    .info-box {
+        float: none;
+        width: 100%;
+        margin-left: 0;
+    }
+    .grid-3, .grid-2 {
+        grid-template-columns: 1fr;
+    }
+    .container {
+        padding: 20px;
+    }
+}

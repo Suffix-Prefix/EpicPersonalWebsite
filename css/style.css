@@ -1,0 +1,240 @@
+/* Base Reset and Typography */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #ffffff; /* Deep fallback black matching the asset */
+    
+    /* Set up the topographic pattern background */
+    background-image: url('img/topographic1.jpg'); 
+    background-repeat: repeat; /* Allows the pattern to tile seamlessly */
+    background-size: 400px; /* Adjust this value to make the pattern larger or smaller */
+    background-position: top left;
+    
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+/* Header / Logo Style */
+#Header {
+    width: 100%;
+    max-width: 1920px; 
+    margin: 15px auto 5px auto; /* Reduced margins to shift the text closer to the top edge */
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.header {
+    width: 100%;
+    text-align: center;
+}
+
+.logo-text {
+    font-size: 6.5rem; 
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style: italic;
+    letter-spacing: -3px; 
+    
+    color: #000000; 
+    width: 100%;
+    display: inline-block;
+    line-height: 0.8; /* Pulls the typography upward inside its container box */
+    
+    /* Force horizontal stretch for that geometric styling */
+    transform: scaleX(1.1);
+    transform-origin: center;
+
+    /* Flawless crisp white outline to isolate it from the topography lines */
+    -webkit-text-stroke: 3px #ffffff; /* Universal browser support for text outlining */
+    text-shadow: 
+        -1px -1px 0 #fff,  
+         1px -1px 0 #fff,
+        -1px  1px 0 #fff,
+         1px  1px 0 #fff; /* Fallback rendering protection */
+}
+
+/* Responsive clean scaling for smaller screens */
+@media (max-width: 1200px) {
+    .logo-text {
+        font-size: 4.5rem;
+        -webkit-text-stroke: 2px #ffffff;
+    }
+}
+@media (max-width: 768px) {
+    .logo-text {
+        font-size: 3rem;
+        letter-spacing: -1px;
+        -webkit-text-stroke: 1.5px #ffffff;
+    }
+}
+
+/* Hero Section - Flawless Full Screen Fit */
+.hero-section {
+    width: 100%;
+    max-width: 1920px; /* Locks upper scale limits to your asset's native width */
+    margin: 0 auto 40px auto; /* Centers the banner on ultra-wide screens */
+    box-shadow: 0 4px 25px rgba(0,0,0,0.6);
+    overflow: hidden; 
+    display: flex;
+    box-sizing: border-box;
+}
+
+.hero-banner-img {
+    width: 100%;
+    height: auto; /* Crucial: Let the browser calculate the height automatically */
+    display: block;
+    object-fit: contain; /* Prevents any zoom, slicing, or crop behaviors */
+}
+/* Brands Section Heading Alignment */
+.main-content {
+    width: 100%;
+    max-width: 1200px; /* Expands layout width slightly for perfect spacing at 1920x1080 */
+    margin: 0 auto;
+    padding: 0 40px;
+    box-sizing: border-box;
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 25px;
+    -webkit-text-stroke: 0.5px #ffffff;
+}
+
+/* 3-Column Grid Configuration */
+.brands-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center; /* This flawlessly centers the remaining elements in the last row */
+    width: 100%;
+    padding-bottom: 40px;
+}
+
+/* Brand Card Style (The Hovering Buttons) */
+.brand-card {
+    /* Lower opacity (0.25) lets the pattern bleed through; blur gives it the frosty look */
+    background: rgba(255, 255, 255, 0.25); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+    
+    /* Subtle light border to define the edge of the glass */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    padding: 20px;
+    
+    /* Precise 3-column sizing */
+    width: calc(33.333% - 20px); 
+    height: 250px; 
+    box-sizing: border-box; 
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+                background-color 0.3s ease;
+}
+
+/* HOVER EFFECT (Becomes slightly less transparent when hovered) */
+.brand-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.45);
+}
+/* Image Constraints */
+.car-image {
+    width: 100%;
+    height: 150px; 
+    object-fit: contain; 
+    margin-bottom: 10px;
+}
+
+/* Text Wrap Prevention */
+.car-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    color: #000000;
+    white-space: nowrap; 
+}
+
+
+/* Clean Responsive Fallbacks */
+@media (max-width: 900px) {
+    .brand-card {
+        width: calc(50% - 15px); /* Drops beautifully into pairs on smaller screens */
+    }
+}
+
+@media (max-width: 550px) {
+    .brand-card {
+        width: 100%; /* Stacks single column for mobile */
+    }
+}
+
+/* Card Internal Elements */
+.brand-logo {
+    align-self: flex-start;
+    max-height: 40px;
+    max-width: 60px;
+    object-fit: contain;
+    opacity: 0.8;
+}
+
+.car-image {
+    max-width: 100%;
+    max-height: 160px; /* Increased height slightly since it now contains both logo and car */
+    object-fit: contain;
+    margin-bottom: auto; /* Pushes text evenly down to the bottom */
+}
+
+.car-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    text-shadow: 1px 1px 2px rgba(156, 156, 156, 0.5);
+}
+
+/.footer p {
+    color: #000000 !important;
+}
+
+
+
+/* Responsive Tweak for Smaller Screens */
+@media (max-width: 768px) {
+    .brands-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .brands-grid .brand-card:nth-last-child(2),
+    .brands-grid .brand-card:nth-last-child(1) {
+        grid-column: auto;
+        margin-left: 0;
+    }
+    .hero-img {
+        max-width: 90%;
+    }
+}
+@media (max-width: 480px) {
+    .brands-grid {
+        grid-template-columns: 1fr;
+    }
+}}
